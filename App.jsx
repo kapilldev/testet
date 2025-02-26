@@ -1,3 +1,29 @@
+import React , {useState} from 'react';
+import {CssBaseline, ThemeProvider} from '@material-ui/core';
+import Layout from "./components/layout/Layout";
+import Theme from './Theme';
+import ChangePasswordModal from './components/ChangePassword/ChangePasswordModal';
+import Button from './components/ChangePassword/Button';
+import useStyles from './components/ChangePassword/styles/buttonStyles'; // Import the styles
+
+
+export default () => {
+    const [showModal, setShowModal] = useState(false);
+    const classes = useStyles();
+    return (
+        <ThemeProvider theme={Theme}>
+            <CssBaseline/>
+            <Layout/>
+            <Button className = "buttonSmall" onClick={() => setShowModal(true)}  /> {/* Reusable Button */}
+        {showModal && <ChangePasswordModal onClose={() => setShowModal(false)} />}
+        </ThemeProvider>
+    );
+};
+
+
+
+
+
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(() => ({
@@ -17,7 +43,12 @@ export default makeStyles(() => ({
   },
   buttonSmall: {
     width: "auto",
-    padding: "10px 10px",
-    margin: "20px",
+    padding: "5px 10px",
+    margin: "10px",
   },
 }));
+
+
+
+
+
